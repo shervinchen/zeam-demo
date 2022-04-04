@@ -93,7 +93,7 @@ const games = [
   },
 ];
 
-function Home() {
+const Home = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -102,14 +102,14 @@ function Home() {
           <i></i>
         </div>
       </div>
-      <hr className="my-4 h-px bg-white" />
+      <hr className="my-4 border-[#aaa]" />
       <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-x-5 gap-y-6">
-        {games.map((game) => (
-          <Game game={game} />
+        {games.map((game, key) => (
+          <Game game={game} key={key} />
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default Home;

@@ -8,17 +8,17 @@ import NoMatch from './page/no-match';
 
 function Layout() {
   return (
-    <div className="flex flex-col items-center mx-auto w-full xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] min-h-screen pt-20 px-4">
-      <h1 className="text-3xl mb-10">Zeam</h1>
+    <div className="flex flex-col items-center mx-auto w-full xl:max-w-[1140px] lg:max-w-[960px] md:max-w-[720px] sm:max-w-[540px] min-h-screen py-20 px-4">
+      <h1 className="text-5xl mb-10">Zeam</h1>
       <nav className="text-center">
         <ul className="flex flex-col gap-y-4">
           <li>
-            <Link to="/" className="hover:text-[#fff]">
+            <Link to="/" className="text-xl hover:text-[#fff]">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/collection" className="hover:text-[#fff]">
+            <Link to="/collection" className="text-xl hover:text-[#fff]">
               Collection
             </Link>
           </li>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { brands, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
+import Like from '../Like';
 
-interface GameItem {
+interface GameListItem {
   id: number;
   title: string;
   thumbnail: string;
@@ -17,7 +18,7 @@ interface GameItem {
   collect: boolean;
 }
 
-const Game = ({ game }: { game: GameItem }) => {
+const Game = ({ game }: { game: GameListItem }) => {
   const getPlatformTypes = (platform: string) => {
     const types = ['Windows', 'Browser'];
     return types.filter((item) => platform.indexOf(item) > -1);
@@ -34,11 +35,7 @@ const Game = ({ game }: { game: GameItem }) => {
           {game.short_description}
         </p>
         <div className="flex items-center justify-between">
-          <FontAwesomeIcon
-            icon={solid('heart')}
-            color={game.collect ? '#f87171' : ''}
-            cursor="pointer"
-          />
+          <Like collect={game.collect} />
           <div className="flex items-center gap-x-2">
             <span className="text-[#272b30] bg-[#7a8288] rounded font-bold text-xs whitespace-nowrap px-1">
               {game.genre}
