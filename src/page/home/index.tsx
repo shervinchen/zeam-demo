@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import axios from 'axios';
 import { useLocalStorageState } from 'ahooks';
+import API from '../../utils/request';
 
 import Game from '../../components/Game';
 import Dropdown from '../../components/Dropdown';
@@ -42,7 +42,7 @@ const Home = () => {
   }, [games]);
 
   useEffect(() => {
-    axios.get('/api/games').then((response) => {
+    API.get('/api/games').then((response) => {
       const { data } = response;
       setGameList(data);
       setGames(data);

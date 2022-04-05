@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { useLocalStorageState } from 'ahooks';
+import API from '../../utils/request';
+
 import Like from '../../components/Like';
 import { GameInfo } from '../../types';
 import { getPlatformTypes } from '../../utils';
@@ -16,7 +17,7 @@ const Game = () => {
   });
 
   useEffect(() => {
-    axios.get(`/api/game?id=${id}`).then((response) => {
+    API.get(`/api/game?id=${id}`).then((response) => {
       const { data } = response;
       setGameInfo(data);
     });
