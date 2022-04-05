@@ -7,6 +7,6 @@ export default axios.create({
       : 'http://localhost:3000',
   headers: {
     'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
-    'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
+    'X-RapidAPI-Key': '0e06f076b6msh78bec355a08536bp1820b2jsn154dad40b979',
   },
 });
