@@ -2,6 +2,7 @@
   "name": "zeam-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://shervinchen.github.io/zeam-demo/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",

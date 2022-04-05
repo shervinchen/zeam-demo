@@ -1,16 +1,31 @@
-#!/usr/bin/env sh
+#!/usr/bin/env
 
-set -e
+# checkout to the gh-pages, reset
+# and sync the branch with our main
+# change here to master if you need
+git checkout gh-pages
+git reset --hard origin/main
 
+# install dependencies and create
+# the react app build
+npm install
 npm run build
 
-cd build
+# delete everything on the directory
+# except the build folder
+find * -maxdepth 0 -name 'build' -prune -o -exec rm -rf '{}' ';'
 
-git checkout gh-pages
+# move the build folder content
+# to the repository root
+mv ./build/* .
 
-git init
-git add -A
-git commit -m 'deploy'
-git push origin gh-pages
+# deletes the git cache and push
+# the new content to gh-pages
+git rm -rf --cache .
+git add .
+git commit -m "deploy"
 
-cd -
+git push origin gh-pages --force
+
+# go back to main (or master)
+git checkout main
