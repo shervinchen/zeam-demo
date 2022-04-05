@@ -43,7 +43,7 @@ const Home = () => {
         {games.map((game, key) => (
           <Game
             game={game}
-            key={key}
+            key={game.id}
             collectStatus={collectGameIds.includes(game.id)}
             toggleCollect={(status) => handleToggleLike(game, status)}
           />

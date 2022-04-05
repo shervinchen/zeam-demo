@@ -27,10 +27,12 @@ const Game = ({ game, collectStatus, toggleCollect }: GameProps) => {
           {game.short_description}
         </p>
         <div className="flex items-center justify-between">
-          <Like
-            status={collectStatus}
-            toggle={(status) => toggleCollect(status)}
-          />
+          <div onClick={(e) => e.preventDefault()}>
+            <Like
+              status={collectStatus}
+              toggle={(status) => toggleCollect(status)}
+            />
+          </div>
           <div className="flex items-center gap-x-2">
             <span className="text-[#272b30] bg-[#7a8288] rounded font-bold text-xs whitespace-nowrap px-1">
               {game.genre}
