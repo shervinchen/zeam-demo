@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-const Like = (props: { collect: boolean; size?: SizeProp }) => {
-  const { collect, size } = props;
+interface LikeProps {
+  status: boolean;
+  size?: SizeProp;
+  toggle: (status: boolean) => void;
+}
+
+const Like = ({ status, size, toggle }: LikeProps) => {
+  const [like, setLike] = useState(status);
+
+  const handleToggleStatus = () => {
+    toggle(!like);
+    setLike(!like);
+  };
+
+  useEffect(() => {
+    setLike(status);
+  }, [status]);
+
   return (
     <FontAwesomeIcon
       icon={solid('heart')}
-      color={collect ? '#f87171' : ''}
+      color={like ? '#f87171' : ''}
       cursor="pointer"
       size={size}
+      onClick={handleToggleStatus}
     />
   );
 };
