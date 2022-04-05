@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/zeam-demo/static/css/main.e6235b9a.css",
+    "main.js": "/zeam-demo/static/js/main.09dddac4.js",
+    "index.html": "/zeam-demo/index.html",
+    "main.e6235b9a.css.map": "/zeam-demo/static/css/main.e6235b9a.css.map",
+    "main.09dddac4.js.map": "/zeam-demo/static/js/main.09dddac4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6235b9a.css",
+    "static/js/main.09dddac4.js"
+  ]
+}
