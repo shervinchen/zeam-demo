@@ -5,18 +5,14 @@ import API from '../../utils/request';
 import Game from '../../components/Game';
 import Dropdown from '../../components/Dropdown';
 import { GameItem } from '../../types';
+import { useCollectGame } from '../../hooks';
 
 const Home = () => {
   const [games, setGames] = useLocalStorageState<GameItem[]>('zeam-games', {
     defaultValue: [],
   });
   const [gameList, setGameList] = useState<GameItem[]>([]);
-  const [collectGameIds, setCollectGameIds] = useLocalStorageState<number[]>(
-    'zeam-collect-game-ids',
-    {
-      defaultValue: [],
-    }
-  );
+  const { collectGameIds, toggleCollect } = useCollectGame();
   const [sortValue, setSortValue] = useState('id');
   const [genreValue, setGenreValue] = useState('all');
 
@@ -87,14 +83,6 @@ const Home = () => {
     }
   };
 
-  const handleToggleLike = (game: GameItem, status: boolean) => {
-    if (status) {
-      setCollectGameIds([...collectGameIds, game.id]);
-    } else {
-      setCollectGameIds([...collectGameIds].filter((item) => item !== game.id));
-    }
-  };
-
   return (
     <div>
       <div className="flex items-center justify-center mb-4">
@@ -134,8 +122,8 @@ const Home = () => {
           <Game
             game={game}
             key={game.id}
-            collectStatus={collectGameIds.includes(game.id)}
-            toggleCollect={(status) => handleToggleLike(game, status)}
+            collectStatus={collectGameIds.includes(game?.id)}
+            toggleCollect={(status) => toggleCollect(status, game?.id)}
           />
         ))}
       </div>

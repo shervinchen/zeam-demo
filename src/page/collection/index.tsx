@@ -2,25 +2,13 @@ import React from 'react';
 import { useLocalStorageState } from 'ahooks';
 import Game from '../../components/Game';
 import { GameItem } from '../../types';
+import { useCollectGame } from '../../hooks';
 
 function Collection() {
   const [games, setGames] = useLocalStorageState<GameItem[]>('zeam-games', {
     defaultValue: [],
   });
-  const [collectGameIds, setCollectGameIds] = useLocalStorageState<number[]>(
-    'zeam-collect-game-ids',
-    {
-      defaultValue: [],
-    }
-  );
-
-  const handleToggleLike = (game: GameItem, status: boolean) => {
-    if (status) {
-      setCollectGameIds([...collectGameIds, game.id]);
-    } else {
-      setCollectGameIds([...collectGameIds].filter((item) => item !== game.id));
-    }
-  };
+  const { collectGameIds, toggleCollect } = useCollectGame();
 
   return (
     <div>
@@ -31,8 +19,8 @@ function Collection() {
             <Game
               game={game}
               key={game.id}
-              collectStatus={collectGameIds.includes(game.id)}
-              toggleCollect={(status) => handleToggleLike(game, status)}
+              collectStatus={collectGameIds.includes(game?.id)}
+              toggleCollect={(status) => toggleCollect(status, game?.id)}
             />
           ))}
       </div>

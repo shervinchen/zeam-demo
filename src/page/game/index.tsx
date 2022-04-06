@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useLocalStorageState } from 'ahooks';
 import API from '../../utils/request';
 
 import Like from '../../components/Like';
 import { GameInfo } from '../../types';
 import { getPlatformTypes } from '../../utils';
+import { useCollectGame } from '../../hooks';
 
 const Game = () => {
   const { id } = useParams();
   const [gameInfo, setGameInfo] = useState<GameInfo>();
-  const [collectGameIds, setCollectGameIds] = useLocalStorageState<
-    (number | undefined)[]
-  >('zeam-collect-game-ids', {
-    defaultValue: [],
-  });
+  const { collectGameIds, toggleCollect } = useCollectGame();
 
   useEffect(() => {
     API.get(`/api/game?id=${id}`).then((response) => {
@@ -22,16 +18,6 @@ const Game = () => {
       setGameInfo(data);
     });
   }, []);
-
-  const handleToggleLike = (status: boolean) => {
-    if (status) {
-      setCollectGameIds([...collectGameIds, gameInfo?.id]);
-    } else {
-      setCollectGameIds(
-        [...collectGameIds].filter((item) => item !== gameInfo?.id)
-      );
-    }
-  };
 
   return (
     <div className="flex flex-col items-center">
@@ -45,7 +31,7 @@ const Game = () => {
         <Like
           status={collectGameIds.includes(gameInfo?.id)}
           size="lg"
-          toggle={(status) => handleToggleLike(status)}
+          toggle={(status) => toggleCollect(status, gameInfo?.id)}
         />
       </div>
       <div className="mb-8 w-full">
